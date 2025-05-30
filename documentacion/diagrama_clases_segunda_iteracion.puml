@@ -1,0 +1,61 @@
+@startuml
+title Primera iteración
+
+class Prenda {
+    TipoDePrenda : tipoDePrenda
+    Material : material
+    Trama : trama
+    ColorPrimario : colorPrimario
+    ColorSecundario : colorSecundario
+}
+
+enum TipoDePrenda {
+    CAMISA,REMERA,
+    CHOMBA,
+    CAMISA_MANGA_CORTA,
+    CAMISA_MANGA_LARGA,
+    PANTALON,
+    ZAPATOS,
+    ZAPATILLAS
+    categoria() : Categoria
+}
+
+enum Material {
+  ALGODON,
+  LANA,
+  PIQUE,
+  ACETATO,
+  SEDA,
+  CUERO
+}
+
+class Color {
+    int : nivelRojo
+    int : nivelVerde
+    int : nivelAzul
+}
+
+enum Categoria {
+  PARTE_SUPERIOR,
+  PARTE_INFERIOR,
+  CALZADO,
+  ACCESORIO,
+  CABEZA
+}
+
+enum Trama {
+  LISA,
+  RAYADA,
+  CON_LUNARES,
+  A_CUADROS,
+  ESTAMPADO
+}
+
+
+Prenda o-- TipoDePrenda : agrega
+Prenda o-- Color : agrega
+Prenda o-- Material : agrega
+Prenda o-- Trama : agrega
+TipoDePrenda -up-> Categoria : usa
+
+@enduml

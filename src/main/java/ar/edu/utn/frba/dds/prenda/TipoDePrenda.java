@@ -1,15 +1,50 @@
 package ar.edu.utn.frba.dds.prenda;
 
 
-public class TipoDePrenda {
+public enum TipoDePrenda {
 
-  Categoria categoria;
+  REMERA {
+    @Override
+    public Categoria categoria() {
+      return Categoria.PARTE_SUPERIOR;
+    }
+  },
+  CHOMBA {
+    @Override
+    public Categoria categoria() {
+      return Categoria.PARTE_SUPERIOR;
+    }
+  },
+  CAMISA_MANGA_CORTA {
+    @Override
+    public Categoria categoria() {
+      return Categoria.PARTE_SUPERIOR;
+    }
+  },
+  CAMISA_MANGA_LARGA {
+    @Override
+    public Categoria categoria() {
+      return Categoria.PARTE_SUPERIOR;
+    }
+  },
+  PANTALON {
+    @Override
+    public Categoria categoria() {
+      return Categoria.PARTE_INFERIOR;
+    }
+  },
+  ZAPATOS {
+    @Override
+    public Categoria categoria() {
+      return Categoria.CALZADO;
+    }
+  },
+  ZAPATILLAS {
+    @Override
+    public Categoria categoria() {
+      return Categoria.CALZADO;
+    }
+  };
 
-  public TipoDePrenda(Categoria categoria) {
-    this.categoria = categoria;
-  }
-
-  public Categoria categoria() {
-    return this.categoria;
-  }
+  public abstract Categoria categoria();
 }

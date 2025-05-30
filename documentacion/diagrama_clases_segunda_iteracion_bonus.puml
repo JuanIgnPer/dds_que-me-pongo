@@ -1,0 +1,16 @@
+@startuml
+
+abstract class Sastre {
+    fabricarUniforme()
+    {abstract} fabricarParteSuperior()
+    {abstract} fabricarParteInferior()
+    {abstract} fabricarCalzado()
+}
+
+class Uniforme {
+}
+
+Sastre -.left-> Uniforme
+SastreSanJuan -up-|> Sastre
+SastreJohnston -up-|> Sastre
+@enduml
