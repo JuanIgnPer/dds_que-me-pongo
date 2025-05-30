@@ -1,4 +1,5 @@
 @startuml
+title Segunda iteración - Bonus
 
 abstract class Sastre {
     fabricarUniforme()

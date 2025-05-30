@@ -1,5 +1,5 @@
 @startuml
-title Segunda iteración
+title Tercera iteración
 
 class Prenda {
     TipoDePrenda : tipoDePrenda
@@ -51,6 +51,19 @@ enum Trama {
   ESTAMPADO
 }
 
+class Guardarropa{
+    Prenda[] : prendas
+    generarAtuendo() : Atuendo
+    generarParteSuperior() : Prenda
+    generarParteInferior() : Prenda
+    generarCalzado() : Prenda
+}
+
+class Atuendo{
+    Prenda : parteSuperior
+    Prenda : parteInferior
+    Prenda : calzado
+}
 
 Prenda o-- TipoDePrenda : agrega
 Prenda o-- Color : agrega
@@ -58,4 +71,7 @@ Prenda o-- Material : agrega
 Prenda o-- Trama : agrega
 TipoDePrenda -up-> Categoria : usa
 
+Guardarropa o-- Prenda : contiene
+Guardarropa -right-> Atuendo : usa
+Atuendo o-- Prenda: agrega
 @enduml
