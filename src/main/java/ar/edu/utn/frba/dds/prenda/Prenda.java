@@ -1,19 +1,55 @@
 package ar.edu.utn.frba.dds.prenda;
 
-import static java.util.Objects.requireNonNull;
+import ar.edu.utn.frba.dds.excepciones.PrendaInvalidaException;
 
 public class Prenda {
   TipoDePrenda tipoDePrenda;
   Material material;
-  Color color;
+  Color colorPrimario;
+  Color colorSecundario;
 
-  public Prenda(TipoDePrenda tipoDePrenda, Material material, Color color) {
-    this.tipoDePrenda = requireNonNull(tipoDePrenda, "tipo de prenda es obligatorio");
-    this.material = requireNonNull(material, "material es obligatorio");
-    this.color = requireNonNull(color, "color es obligatorio");
+  public Prenda(TipoDePrenda tipoDePrenda, Material material, Color colorPrimario) {
+    if (tipoDePrenda == null) {
+      throw new PrendaInvalidaException("Tipo de prenda no valido");
+    }
+    if (material == null) {
+      throw new PrendaInvalidaException("Material no valido");
+    }
+    if (colorPrimario == null) {
+      throw new PrendaInvalidaException("Color no valido");
+    }
+    this.tipoDePrenda = tipoDePrenda;
+    this.material = material;
+    this.colorPrimario = colorPrimario;
+    this.colorSecundario = null;
   }
 
-  public Categoria categoria() {
+  public Prenda(TipoDePrenda tipoDePrenda, Material material,
+                Color colorPrimario, Color colorSecundario) {
+    this(tipoDePrenda, material, colorPrimario);
+    if (colorSecundario == null) {
+      throw new PrendaInvalidaException("Color secundario no valido");
+    }
+    this.colorSecundario = colorSecundario;
+  }
+
+  public Material getMaterial() {
+    return material;
+  }
+
+  public Categoria getCategoria() {
     return tipoDePrenda.categoria();
+  }
+
+  public TipoDePrenda getTipoDePrenda() {
+    return tipoDePrenda;
+  }
+
+  public Color getColorPrimario() {
+    return colorPrimario;
+  }
+
+  public Color getColorSecundario() {
+    return colorSecundario;
   }
 }

@@ -1,0 +1,43 @@
+@startuml
+title Primera iteración
+
+class Prenda {
+    TipoDePrenda : tipoDePrenda
+    Material : material
+    ColorPrimario : colorPrimario
+    ColorSecundario : colorSecundario
+}
+
+class TipoDePrenda {
+    categoria() : Categoria
+}
+
+enum Material {
+  ALGODON,
+  LANA,
+  PIQUE,
+  ACETATO,
+  SEDA,
+  CUERO
+}
+
+class Color {
+    int : nivelRojo
+    int : nivelVerde
+    int : nivelAzul
+}
+
+enum Categoria {
+  PARTE_SUPERIOR,
+  PARTE_INFERIOR,
+  CALZADO,
+  ACCESORIO,
+  CABEZA
+}
+
+Prenda o-- TipoDePrenda : agrega
+Prenda o-- Color : agrega
+Prenda o-- Material : agrega
+TipoDePrenda o-- Categoria : agrega
+
+@enduml
