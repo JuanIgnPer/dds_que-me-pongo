@@ -10,6 +10,7 @@ public class Borrador {
   private Trama trama = Trama.LISA; // Por defecto, la trama es lisa, aun cuando no se especifique
   private Color colorPrincipal;
   private Color colorSecundario;
+  private Formalidad formalidad;
 
   public Borrador(TipoDePrenda tipoDePrenda) {
     // Valido el tipo de prenda al crear el borrador
@@ -51,6 +52,11 @@ public class Borrador {
     return this;
   }
 
+  public Borrador especificarFormalidad(Formalidad formalidad) {
+    this.formalidad = formalidad;
+    return this;
+  }
+
   public void validarPrenda() {
     // tipoDePrenda --> Se valida en el constructor
     if (material == null) {
@@ -67,6 +73,6 @@ public class Borrador {
   public Prenda crearPrenda() {
     validarPrenda();
     return new Prenda(this.tipoDePrenda, this.material, this.trama,
-        this.colorPrincipal, this.colorSecundario);
+        this.colorPrincipal, this.colorSecundario, this.formalidad);
   }
 }

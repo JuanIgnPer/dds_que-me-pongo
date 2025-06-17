@@ -65,6 +65,12 @@ class Atuendo{
     Prenda : calzado
 }
 
+enum Formalidad{
+    FORMAL,
+    INFORMAL,
+    NEUTRA
+}
+
 Prenda o-- TipoDePrenda : agrega
 Prenda o-- Color : agrega
 Prenda o-- Material : agrega
@@ -74,4 +80,6 @@ TipoDePrenda -up-> Categoria : usa
 Guardarropa o-- Prenda : contiene
 Guardarropa -right-> Atuendo : usa
 Atuendo o-- Prenda: agrega
+
+Prenda - Formalidad : agrega
 @enduml
