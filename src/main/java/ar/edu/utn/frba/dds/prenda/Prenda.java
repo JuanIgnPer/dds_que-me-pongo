@@ -58,7 +58,7 @@ public class Prenda {
     return tipoDePrenda.esCalzado();
   }
 
-  public boolean esInformal() {
-    return this.formalidad == Formalidad.INFORMAL;
+  public boolean esFormal() {
+    return this.formalidad == Formalidad.FORMAL;
   }
 }

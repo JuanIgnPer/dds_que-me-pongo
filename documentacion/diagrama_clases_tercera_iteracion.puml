@@ -51,12 +51,21 @@ enum Trama {
   ESTAMPADO
 }
 
-class Guardarropa{
-    Prenda[] : prendas
-    generarAtuendo() : Atuendo
-    generarParteSuperior() : Prenda
-    generarParteInferior() : Prenda
-    generarCalzado() : Prenda
+abstract class MotorSugerencia {
+    - getPrendasSuperiores(List<Prenda>) : Set<Prenda>
+    - getPrendasInferiores(List<Prenda>) : Set<Prenda>
+    - getCalzados(List<Prenda>) : Set<Prenda>
+    + generarCombinacionesDeAtuendos(Usuario) : List<Atuendo>
+    + sugerirAtuendo(Usuario) : Atuendo
+    + {abstract} validarPrendasDe(Usuario) : List<Prenda>
+}
+
+class MotorSugerenciaBasico {
+    + validarPrendasDe(Usuario) : List<Prenda>
+}
+
+class MotorSugerenciaSegunFormalidad{
+    + validarPrendasDe(Usuario) : List<Prenda>
 }
 
 class Atuendo{
@@ -77,9 +86,31 @@ Prenda o-- Material : agrega
 Prenda o-- Trama : agrega
 TipoDePrenda -up-> Categoria : usa
 
-Guardarropa o-- Prenda : contiene
-Guardarropa -right-> Atuendo : usa
 Atuendo o-- Prenda: agrega
 
 Prenda - Formalidad : agrega
+
+MotorSugerenciaBasico -up-|> MotorSugerencia
+MotorSugerenciaSegunFormalidad -up-|> MotorSugerencia
+MotorSugerencia -- "0..*" Atuendo : genera
+MotorSugerencia -- Prenda: conoce
+
+class Usuario {
+    - prendas : List<Prenda>
+    - edad : int
+    - motorSugerencia : MotorSugerencia
+    + Usuario(int, List<Prenda>, MotorSugerencia)
+    + generarSugerencias() : List<Atuendo>
+    + generarSugerencia() : Atuendo
+    + getEdad() : int
+    + getPrendas() : List<Prenda>
+    + esEdadAvanzada() : boolean
+    + getMotorSugerencia() : MotorSugerencia
+    + setMotorSugerencia(MotorSugerencia) : void
+}
+
+Usuario -- "1" MotorSugerencia : usa
+Usuario -- "1..*" Prenda : tiene
+Usuario -- "0..*" Atuendo : genera
+
 @enduml
